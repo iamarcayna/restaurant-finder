@@ -1,0 +1,23 @@
+{
+  "name": "restaurant-finder-backend",
+  "version": "1.0.0",
+  "description": "A LLM-Driven Restaurant Finder App that allows users to enter a free-form message describing what they want to do.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r ts-node/register src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
