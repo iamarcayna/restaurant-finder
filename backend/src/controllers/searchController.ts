@@ -2,35 +2,37 @@ import { Request, Response } from "express";
 import { textPromptToJSON } from "../utils/openAi";
 import { OpenAiResponse, searchQuerySchema } from "../types";
 import { SearchService } from "../services";
+import { RestaurantFinderError } from "../errors";
 
 export const search = async (request: Request, response: Response) => {
   const validatedBody = searchQuerySchema.safeParse(request.body);
 
   if (!validatedBody.success) {
-    response.status(400).json({
+    throw new RestaurantFinderError({
       error: validatedBody.error.flatten(),
+      message: "Invalid request body",
+      status: 400,
     });
-    return;
   }
 
   const { message } = validatedBody.data;
   const jsonPrompt = await textPromptToJSON(message);
 
   if (!jsonPrompt) {
-    response.status(400).json({
-      error: "Unabled to process message.",
+    throw new RestaurantFinderError({
+      message: "Unabled to process message.",
+      status: 400,
     });
-    return;
   }
 
   const queryObject = JSON.parse(jsonPrompt) as OpenAiResponse;
   const isParametersEmpty = Object.keys(queryObject.parameters).length === 0;
 
   if (isParametersEmpty) {
-    response.status(400).json({
-      error: "Unabled to process message.",
+    throw new RestaurantFinderError({
+      message: "Unabled to process message.",
+      status: 400,
     });
-    return;
   }
 
   const results = await SearchService.searchFourSquare(queryObject.parameters);
