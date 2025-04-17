@@ -7,11 +7,12 @@ dotenv.config();
 
 const app = express();
 const port = process.env.NODE_PORT || 3001;
+const frontendPort = process.env.NUXT_PORT || 3000
 
 app.use(json());
 
 // Allow CORS for local frontend
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: `http://localhost:${frontendPort}` }));
 
 // Register routes for search
 app.use("/api", Routes.searchRouter);
