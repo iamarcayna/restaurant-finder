@@ -11,6 +11,11 @@ app.use(json());
 // Register routes for search
 app.use("/api", Routes.searchRouter);
 
+// Catch all route
+app.use((_req, res) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
