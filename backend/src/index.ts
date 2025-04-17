@@ -2,12 +2,16 @@ import express, { json } from "express";
 import dotenv from "dotenv";
 import * as Routes from "./routes";
 import { globalErrorHandler } from "./handlers";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
 const port = process.env.NODE_PORT || 3001;
 
 app.use(json());
+
+// Allow CORS for local frontend
+app.use(cors({ origin: "http://localhost:3000" }));
 
 // Register routes for search
 app.use("/api", Routes.searchRouter);
