@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { textPromptToJSON } from "../utils/openAi";
 import { OpenAiResponse, searchQuerySchema } from "../types";
+import { SearchService } from "../services";
 
 export const search = async (request: Request, response: Response) => {
   const validatedBody = searchQuerySchema.safeParse(request.body);
@@ -32,5 +33,7 @@ export const search = async (request: Request, response: Response) => {
     return;
   }
 
-  response.status(200).json(queryObject);
+  const results = await SearchService.searchFourSquare(queryObject.parameters);
+
+  response.status(200).json(results);
 };
