@@ -41,7 +41,19 @@ restaurant-finder/
    npm install
    ```
 
-3. Create `.env` file in the backend directory and copy the contents of `example.env`, then fill in the required values
+3. Create `.env` file in the backend directory and copy the contents of `example.env`, then **fill in the required values**
+
+   #### Windows
+
+   ```
+   copy example.env .env
+   ```
+
+   #### Mac/Linux
+
+   ```
+   cp example.env .env
+   ```
 
 4. Start the development server:
    ```bash
@@ -64,7 +76,19 @@ restaurant-finder/
    npm install
    ```
 
-3. Create `.env` file in the frontend directory and copy the contents of `example.env`, then fill in the required values
+3. Create `.env` file in the frontend directory and copy the contents of `example.env`, then **fill in the required values**
+
+   #### Windows
+
+   ```
+   copy example.env .env
+   ```
+
+   #### Mac/Linux
+
+   ```
+   cp example.env .env
+   ```
 
 4. Start the development server:
    ```bash
