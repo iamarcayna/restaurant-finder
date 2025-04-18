@@ -2,12 +2,13 @@ import { RestaurantFinderError } from "../errors";
 import {
   FourSquareErrorResponse,
   FourSquareResponse,
-  SearchParameter,
+  OpenAiResponse,
+  SearchAction,
 } from "../types";
 import dotenv from "dotenv";
 dotenv.config();
 
-export const searchFourSquare = async (params: SearchParameter) => {
+export const searchFourSquare = async (aiQuery: OpenAiResponse) => {
   const fieldsToReturn = [
     "description",
     "hours",
@@ -21,8 +22,9 @@ export const searchFourSquare = async (params: SearchParameter) => {
 
   // queries we add in the url
   const queryObject = {
-    ...params,
+    ...aiQuery.parameters,
     fields: fieldsToReturn,
+    categories: [SearchAction[aiQuery.action]]
   };
 
   const stringifiedParams = Object.fromEntries(

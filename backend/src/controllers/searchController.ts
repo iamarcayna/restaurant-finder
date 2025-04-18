@@ -35,7 +35,7 @@ export const search = async (request: Request, response: Response) => {
     });
   }
 
-  const results = await SearchService.searchFourSquare(queryObject.parameters);
+  const results = await SearchService.searchFourSquare(queryObject);
 
   response.status(200).json(results);
 };

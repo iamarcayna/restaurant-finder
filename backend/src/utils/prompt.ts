@@ -1,8 +1,6 @@
-import { SearchAction } from "../types";
-
 export const createAssistantPrompt = (
   textPrompt: string,
-  actions: SearchAction[]
+  actions: string[]
 ) => {
   return `
       You are an AI that extracts structured data from user input.

@@ -9,7 +9,7 @@ const client = new OpenAI({
 });
 
 export const textPromptToJSON = async (textPrompt: string) => {
-  const searchActions = [SearchAction.Restaurant];
+  const searchActions = Object.keys(SearchAction);
   const prompt = createAssistantPrompt(textPrompt, searchActions);
 
   const completion = await client.chat.completions.create({
